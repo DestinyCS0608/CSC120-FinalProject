@@ -8,7 +8,7 @@ public class Customer {
     private String preferredSize;
     private String preferredTopping;
 
-    // Constructor that generates a random name and preferences
+    
     public Customer() {
         this.name = generateRandomName();
         this.preferredFlavor = generateRandomFlavor();
@@ -33,7 +33,7 @@ public class Customer {
     }
 
     private String generateRandomName() {
-        String[] names = {"Alice", "Bob", "Charlie", "David", "Eva", "Frank", "Grace", "Hank", "Ivy", "Jack"};
+        String[] names = {"Destiny", "Shaq", "Danielle", "David"};
         return names[random.nextInt(names.length)];
     }
 

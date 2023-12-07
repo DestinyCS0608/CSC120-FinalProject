@@ -20,7 +20,7 @@ public class Player {
         this.bobaMenu = bobaMenu;
         this.scanner = scanner;
         this.totalEarnings = 0.00;
-        // Initialize player's choices to empty strings
+       
         this.playerBobaFlavor = "";
         this.playerBobaSize = "";
         this.playerBobaTopping = "";
@@ -108,12 +108,12 @@ public class Player {
                     System.out.println("Invalid choice. No action taken.");
             }
         } else {
-            System.out.println("Invalid input. No action taken.");
-            scanner.next(); // Consume the invalid input
+            System.out.println("Invalid input. ");
+            scanner.next(); 
         }
         
-        // Add the break statement here
-        scanner.nextLine(); // Consume the newline character
+       
+        scanner.nextLine(); 
     }
 
     
@@ -129,15 +129,15 @@ public class Player {
         // Prompt the player for the corrected choices
         System.out.print("Enter corrected boba flavor: ");
         this.playerBobaFlavor = scanner.next();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine(); 
     
         System.out.print("Enter corrected boba size: ");
         this.playerBobaSize = scanner.next();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine(); 
     
         System.out.print("Enter corrected boba topping: ");
         this.playerBobaTopping = scanner.next();
-        scanner.nextLine(); // Consume the newline character
+        scanner.nextLine(); 
     
         // Display payment simulation
         System.out.println("~~~~~~ Payment received. Transaction complete! ~~~~~~");

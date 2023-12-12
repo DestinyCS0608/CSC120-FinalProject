@@ -33,7 +33,7 @@ public class Customer {
     }
 
     private String generateRandomName() {
-        String[] names = {"Destiny", "Shaq", "Danielle", "David"};
+        String[] names = {"High Schooler", "Mom on the Run", "Corporate Worker", "Stressed College Student"};
         return names[random.nextInt(names.length)];
     }
 
@@ -52,8 +52,22 @@ public class Customer {
         return toppings[random.nextInt(toppings.length)];
     }
 
-    @Override
+    public boolean isSatisfied(String playerBobaFlavor, String playerBobaSize, String playerBobaTopping) {
+        return playerBobaFlavor.equalsIgnoreCase(preferredFlavor) &&
+               playerBobaSize.equalsIgnoreCase(preferredSize) &&
+               playerBobaTopping.equalsIgnoreCase(preferredTopping);
+    }
+    
     public String toString() {
-        return "Customer " + name + " (FLAVOR: " + preferredFlavor + ", SIZE: " + preferredSize + ", TOPPING: " + preferredTopping + ")";
+         String text = name + ": I would like a " + preferredFlavor + " boba with " + preferredTopping + " as a topping, in a " + preferredSize + " size.";
+         for(int i = 0; i < text.length(); i++) {
+            long start = System.currentTimeMillis();
+            while (System.currentTimeMillis() - start < 75) {
+            }
+            System.out.print(text.charAt(i));
+        }
+        return "";
     }
 }
+
+

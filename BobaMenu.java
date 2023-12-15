@@ -6,6 +6,7 @@ public class BobaMenu {
     private Map<String, Double> sizePrices;
     private Map<String, Double> toppingPrices;
 
+
     public BobaMenu() {
         flavorPrices = new HashMap<>();
         flavorPrices.put("taro", 3.00);
@@ -19,7 +20,8 @@ public class BobaMenu {
 
         toppingPrices = new HashMap<>();
         toppingPrices.put("tapioca", 0.50);
-        toppingPrices.put("popping", 0.75);
+        toppingPrices.put("jelly", 0.75);
+
     }
 
     public double getFlavorPrice(String flavor) {
@@ -33,4 +35,6 @@ public class BobaMenu {
     public double getToppingPrice(String topping) {
         return toppingPrices.getOrDefault(topping.toLowerCase(), 0.00);
     }
+    
+
 }

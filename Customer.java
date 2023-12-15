@@ -33,8 +33,11 @@ public class Customer {
     }
 
     private String generateRandomName() {
-        String[] names = {"High Schooler", "Mom on the Run", "Corporate Worker", "Stressed College Student"};
-        return names[random.nextInt(names.length)];
+        String[] names = {"👩‍🎓 High Schooler", "👩‍👧‍👧Mom on the Run", "👩‍💼Corporate Worker", "👩‍💻Stressed College Student"};
+        String randomName = names[random.nextInt(names.length)];
+       
+        // Bold formatting using ANSI escape codes
+        return "\033[1m" + randomName + "\033[0m";
     }
 
     private String generateRandomFlavor() {
@@ -48,7 +51,7 @@ public class Customer {
     }
 
     private String generateRandomTopping() {
-        String[] toppings = {"tapioca", "popping"};
+        String[] toppings = {"tapioca", "jelly"};
         return toppings[random.nextInt(toppings.length)];
     }
 
@@ -58,8 +61,24 @@ public class Customer {
                playerBobaTopping.equalsIgnoreCase(preferredTopping);
     }
     
+    public void complain(String playerBobaFlavor, String playerBobaSize, String playerBobaTopping){
+        System.out.println("\n");
+        if (!preferredFlavor.equalsIgnoreCase(playerBobaFlavor)) {
+            System.out.println(name + ": 'This boba tastes off... 😣 '");
+        }
+        if (!preferredSize.equalsIgnoreCase(playerBobaSize)) {
+            System.out.println(name +": 'I don't remembering ordering this size.. 🧋 '");
+        }
+        if (!preferredTopping.equalsIgnoreCase(playerBobaTopping)){
+            System.out.println(name +": 'Woah, the toppings were surprising!... 😦 '");
+        }
+    }
+
+
     public String toString() {
-         String text = name + ": I would like a " + preferredFlavor + " boba with " + preferredTopping + " as a topping, in a " + preferredSize + " size.";
+        String text = "\033[1m" + name + "\033[0m: 'I would like a " +
+        preferredSize + " " + preferredFlavor + " boba with " +
+        preferredTopping + " as a topping.'";
          for(int i = 0; i < text.length(); i++) {
             long start = System.currentTimeMillis();
             while (System.currentTimeMillis() - start < 75) {

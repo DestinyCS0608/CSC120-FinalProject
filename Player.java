@@ -3,33 +3,49 @@ import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * The Player class represents a player who is a barista who serves boba drinks to customers.
+ * It manages the interaction with customers, boba choices, orders, and customer satisfaction.
+ */
 public class Player {
 
     private String playerName;
     private BobaMenu bobaMenu;
-    private Scanner scanner;
     private BigDecimal totalEarnings;
-
-    // Additional fields to store player's choices
     private String playerBobaFlavor;
     private String playerBobaSize;
     private String playerBobaTopping;
+    private Scanner scanner;
 
+    /**
+     * Constructs a new player with the specified name, boba menu, and scanner.
+     * @param playerName The player's name.
+     * @param bobaMenu   The boba menu to reference for pricing of the drinks.
+     * @param scanner    The scanner for user input.
+     */
     public Player(String playerName, BobaMenu bobaMenu, Scanner scanner) {
         this.playerName = playerName;
         this.bobaMenu = bobaMenu;
-        this.totalEarnings = BigDecimal.ZERO;
-        this.scanner = scanner;
-       
+        this.totalEarnings = BigDecimal.ZERO;       
         this.playerBobaFlavor = "";
         this.playerBobaSize = "";
         this.playerBobaTopping = "";
+        this.scanner = scanner;
     }
 
+    /**
+     * Gets the total earnings of the player in decimal format.
+     * @return The total earnings of the player.
+     */
     public BigDecimal getTotalEarnings() {
         return totalEarnings;
     }
 
+     /**
+     * Serves boba to a customer, managing the order process and customer satisfaction.
+     * @param customer The customer to serve.
+     * @return true if the customer is satisfied and false if they're not.
+     */
     public boolean serveBoba(Customer customer) {
     
         System.out.println("\u001B[3mAre you ready to make the order? (y/n): \u001B[0m"); 
@@ -37,9 +53,8 @@ public class Player {
 
         if (!readyToOrder.equals("y")) {
             System.out.println("\n\u001B[3mOkay, the customer will repeat their order.\u001B[0m"); 
-            System.out.println(customer); // Display the customer's order again
+            System.out.println(customer); 
     
-            // Prompt the player again
             System.out.println("\n\u001B[3mAre you ready to make the order now? (y/n):\u001B[0m"); 
 
             readyToOrder = scanner.nextLine().toLowerCase();
@@ -84,6 +99,10 @@ public class Player {
         return satisfied;
     }
 
+    /**
+     * Prompts the player for boba choices and returns whether the choices are ready.
+     * @return true if the player is ready with the boba choices and false if they're not.
+     */
     private boolean promptForBobaChoices() {
         boolean bobaReady = false;
     
@@ -110,7 +129,11 @@ public class Player {
         return true; // The user is satisfied and ready to make the drink
     }
     
-
+    /**
+     * Calculates the total cost of the boba order based on player's choices and the customer.
+     * @param customer The customer that the boba order is for.
+     * @return The total cost of the boba order.
+     */
     private double calculateBobaCost(Customer customer) {
         double flavorCost = bobaMenu.getFlavorPrice(playerBobaFlavor);
         double sizeCost = bobaMenu.getSizePrice(playerBobaSize);
@@ -118,10 +141,19 @@ public class Player {
         return flavorCost + sizeCost + toppingCost;
     }
 
+    /**
+     * Determines the customer satisfaction based on whether the boba order matches the customer's preferences.
+     * @param customer The customer for whom the boba is being prepared.
+     * @return true if the customer is satisfied and false if not
+     */
     private boolean determineSatisfaction(Customer customer) {
-        return customer.isSatisfied(playerBobaFlavor, playerBobaSize, playerBobaTopping);
+        return customer.CustomerSatisfied(playerBobaFlavor, playerBobaSize, playerBobaTopping);
     }    
 
+    /**
+     * Handles the event when a customer is satisfied, including processing tips.
+     * @param totalCost The total cost of the boba order.
+     */
     private void handleSatisfiedCustomer(double totalCost) {
         System.out.println("\nCustomer is satisfied! You made the right boba!\n");
         double tipAmount = generateTip();
@@ -131,6 +163,11 @@ public class Player {
         }
     }
     
+    /**
+     * Handles the event when a customer is dissatisfied, providing options to remake or refund the boba.
+     * @param customer   The dissatisfied customer.
+     * @param totalCost  The total cost of the original boba order.
+     */
     private void handleDissatisfiedCustomer(Customer customer, double totalCost) {
         System.out.println("\nCustomer is not satisfied. You made the wrong boba! What should you do " + playerName + "? ");
         System.out.println("\n1. Offer a refund");
@@ -161,13 +198,22 @@ public class Player {
         scanner.nextLine(); // Consume the newline character
     }
     
-
+    /**
+     * Processes a refund when a customer doesn't like their oder.
+     * @param totalCost The total cost of the original boba order.
+     */
     private void processRefund(double totalCost) {
         slowWriting("\n....Processing Refund....\n" );
         System.out.println("\nBarista " +playerName+ ": 'Refund processed. Apologies for the inconvenience!'");
         totalEarnings = totalEarnings.add(BigDecimal.valueOf(totalCost));
     }
 
+    /**
+     * Remakes the boba order for a dissatisfied customer with a prompt for the users corrected choices.
+     * @param customer  The dissatisfied customer.
+     * @param totalCost The total cost of the original boba order.
+     * @return true if the customer is satisfied with the remake and false if otherwise.
+     */
     private boolean remakeBoba(Customer customer, double totalCost) {  
 
         System.out.println("\nOkay, here comes the customer's order again:");
@@ -205,7 +251,7 @@ public class Player {
         // Calculate total cost using stored choices
         double newTotalCost = calculateBobaCost(customer);
 
-        // Display total cost and simulate payment
+        // Display total cost and payment
         System.out.println("\nBarista " + playerName+ ": 'Your total is $" + newTotalCost + "'");
         slowWriting("\n... Costumer is paying ...\n");
         System.out.println("\nPayment Recieved! 💰 💵 💳 ");
@@ -213,7 +259,7 @@ public class Player {
 
         slowWriting("\n... Costumer is tasting boba ...");
     
-        // Display payment simulation
+        // Display payment 
         System.out.println("\nPayment Recieved! 🧾 💰 💵 💳 ");
         System.out.println("\nBarista " +playerName+ ": Great! Here's your receipt! 🧾");
         totalEarnings = totalEarnings.add(BigDecimal.valueOf(newTotalCost));
@@ -231,7 +277,10 @@ public class Player {
         }
     }
     
-
+    /**
+     * Generates a random tip amount between $0 and $3.
+     * @return The generated tip amount.
+     */
     private double generateTip() {
         // Generate a random tip between $0 and $3
         double tipAmount = new Random().nextDouble() * 3.00;
@@ -243,6 +292,11 @@ public class Player {
         return tipAmount;
     }
 
+    /**
+     * Simulates slow writing or typerwriter effect.
+     * @param text The string to be written.
+     * @return The same string that was printed.
+     */
     private String slowWriting(String text){
         for(int i = 0; i < text.length(); i++) {
             long start = System.currentTimeMillis();

@@ -1,5 +1,11 @@
 import java.util.Random;
 
+/**
+ * The Customer class represents a customer ordering a boba drink with preferences for flavor, size, and topping.
+ * It generates random customers and their random preferences.
+ * It also provides methods to check if the customer is satisfied with a given boba order, and if not complains about it.
+ */
+
 public class Customer {
     private static final Random random = new Random();
 
@@ -8,6 +14,9 @@ public class Customer {
     private String preferredSize;
     private String preferredTopping;
 
+    /**
+     * Constructs a new random customer with random preferences for name, flavor, size, and topping.
+     */
     
     public Customer() {
         this.name = generateRandomName();
@@ -16,22 +25,42 @@ public class Customer {
         this.preferredTopping = generateRandomTopping();
     }
 
+    /**
+     * Gets the name of the customer.
+     * @return The name of the customer.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Gets the preferred flavor of the customer.
+     * @return The preferred flavor of the customer.
+     */
     public String getPreferredFlavor() {
         return preferredFlavor;
     }
 
+    /**
+     * Gets the preferred size of the customer.
+     * @return The preferred size of the customer.
+     */
     public String getPreferredSize() {
         return preferredSize;
     }
 
+    /**
+     * Gets the preferred topping of the customer.
+     * @return The preferred topping of the customer.
+     */
     public String getPreferredTopping() {
         return preferredTopping;
     }
 
+    /**
+     * Generates a random name for the customer from an array list.
+     * @return A randomly chosen name for the customer.
+     */
     private String generateRandomName() {
         String[] names = {"👩‍🎓 High Schooler", "👩‍👧‍👧Mom on the Run", "👩‍💼Corporate Worker", "👩‍💻Stressed College Student"};
         String randomName = names[random.nextInt(names.length)];
@@ -40,27 +69,52 @@ public class Customer {
         return "\033[1m" + randomName + "\033[0m";
     }
 
+    /**
+     * Generates a random flavor for the customer's boba preference.
+     * @return A randomly chosen flavor for the customer's boba.
+     */
     private String generateRandomFlavor() {
         String[] flavors = {"taro", "matcha", "mango"};
         return flavors[random.nextInt(flavors.length)];
     }
 
+    /**
+     * Generates a random size for the customer's boba preference.
+     * @return A randomly chosen size for the customer's boba.
+     */
     private String generateRandomSize() {
         String[] sizes = {"small", "medium", "large"};
         return sizes[random.nextInt(sizes.length)];
     }
 
+    /**
+     * Generates a random topping for the customer's boba preference.
+     * @return A randomly chosen topping for the customer's boba order.
+     */
     private String generateRandomTopping() {
         String[] toppings = {"tapioca", "jelly"};
         return toppings[random.nextInt(toppings.length)];
     }
 
-    public boolean isSatisfied(String playerBobaFlavor, String playerBobaSize, String playerBobaTopping) {
+    /**
+     * Checks if the customer is satisfied with a boba order.
+     * @param playerBobaFlavor  The flavor of the player's boba.
+     * @param playerBobaSize    The size of the player's boba.
+     * @param playerBobaTopping The topping of the player's boba.
+     * @return true if the customer is satisfied; and false if they're not.
+     */
+    public boolean CustomerSatisfied(String playerBobaFlavor, String playerBobaSize, String playerBobaTopping) {
         return playerBobaFlavor.equalsIgnoreCase(preferredFlavor) &&
                playerBobaSize.equalsIgnoreCase(preferredSize) &&
                playerBobaTopping.equalsIgnoreCase(preferredTopping);
     }
     
+    /**
+     * Prints complaints if the player's boba order does not match the customer's preferences.
+     * @param playerBobaFlavor  The flavor of the player's boba.
+     * @param playerBobaSize    The size of the player's boba.
+     * @param playerBobaTopping The topping of the player's boba.
+     */
     public void complain(String playerBobaFlavor, String playerBobaSize, String playerBobaTopping){
         System.out.println("\n");
         if (!preferredFlavor.equalsIgnoreCase(playerBobaFlavor)) {
@@ -74,7 +128,10 @@ public class Customer {
         }
     }
 
-
+    /**
+     * Prints out the  customer's preferred boba order with a typewriter effect.
+     * @return A string representation of the customer's preferred boba order.
+     */
     public String toString() {
         String text = "\033[1m" + name + "\033[0m: 'I would like a " +
         preferredSize + " " + preferredFlavor + " boba with " +

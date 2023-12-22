@@ -41,3 +41,6 @@ Sources that I used to help me with my code!
 
 - Bold Formating:
     https://stackoverflow.com/questions/29109678/print-in-bold-on-a-terminal 
+
+- Do- While Loop: 
+    https://stackoverflow.com/questions/20472169/when-would-a-do-while-loop-be-the-better-than-a-while-loop 

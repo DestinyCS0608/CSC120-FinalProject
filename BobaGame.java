@@ -18,7 +18,7 @@ public class BobaGame {
             Player player = null;
             BigDecimal goal = new BigDecimal("100.00"); 
 
-            while (player == null || player.getTotalEarnings().compareTo(goal) < 0) {
+            while (player == null || player.getProfit().compareTo(goal) < 0) {
                 if (gameStarted) {
                     System.out.println("\u001B[1m \n🔔 A customer walks in! 🔔\033[0m");
 
@@ -43,10 +43,10 @@ public class BobaGame {
                     player = new Player(playerName, new BobaMenu(), scanner);
 
                     System.out.println("\nIn this game, you are working in a boba shop as a recently hired Boba tea barista.");
-                    System.out.println("Your goal is to serve boba to customers based on their preferences.");
-                    System.out.println("Remeber each customer's flavor, size, and topping preferences.");
+                    System.out.println("Your job is to serve boba to customers based on what the order.");
+                    System.out.println("Remember each customer's flavor, size, and topping preferences.");
                     System.out.println("Try to make the right boba to keep your customers satisfied!");
-                    System.out.println("Earn tips and increase your total earnings. The goal is to reach $10 in profit.");
+                    System.out.println("Earn tips and increase your profit. The goal is to reach $100 in profit.");
                     System.out.println("Good luck!");
 
                     System.out.print("\nAre you ready to begin (y/n): ");
@@ -61,7 +61,7 @@ public class BobaGame {
                 }
             }
 
-            System.out.println("\nCongratulations! You've reached the profit goal of $100. Game Over!");
+            System.out.println("\nCongratulations! You've reached the profit goal of $100. Game Over! Thanks for playing.");
         }
     }
 }

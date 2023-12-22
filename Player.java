@@ -1,4 +1,5 @@
-
+/** This section was generated with the help of AI-completion tool. **/
+ 
 import java.util.Random;
 import java.util.Scanner;
 import java.math.BigDecimal;
@@ -8,7 +9,7 @@ import java.text.DecimalFormat;
  * The Player class represents a player who is a barista who serves boba drinks to customers.
  * It manages the interaction with customers, boba choices, orders, and customer satisfaction.
  */
-public class Barista {
+public class Player {
 
     private String name;
     private BobaMenu bobaMenu;
@@ -24,7 +25,7 @@ public class Barista {
      * @param bobaMenu   The boba menu to reference for pricing of the drinks.
      * @param scanner    The scanner for user input.
      */
-    public Barista(String name, BobaMenu bobaMenu, Scanner scanner) {
+    public Player(String name, BobaMenu bobaMenu, Scanner scanner) {
         this.name = name;
         this.bobaMenu = bobaMenu;
         this.profit = BigDecimal.ZERO;       
@@ -41,7 +42,6 @@ public class Barista {
     public BigDecimal getProfit() {
         return profit;
     }
-
 
      /**
      * Serves boba to a customer, managing the order process and customer satisfaction.
@@ -285,6 +285,8 @@ public class Barista {
      * Prints text in slow writing or typerwriter effect.
      * @param text The string to be written.
      * @return The same string that was printed.
+     * Source: Stack Overflow https://stackoverflow.com/questions/32918414/java-printing-text-letter-by-letter-in-console-ft-lag  
+     * Modified to print slower..
      */
     private String slowWriting(String text){
         for(int i = 0; i < text.length(); i++) {

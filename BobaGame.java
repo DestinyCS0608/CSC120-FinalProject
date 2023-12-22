@@ -15,7 +15,7 @@ public class BobaGame {
 
         try (Scanner scanner = new Scanner(System.in)) {
             boolean gameStarted = false;
-            Barista player = null;
+            Player player = null;
             BigDecimal goal = new BigDecimal("100.00"); 
 
             while (player == null || player.getProfit().compareTo(goal) < 0) {
@@ -28,7 +28,7 @@ public class BobaGame {
                     System.out.print("\nHello! What is your name?: ");
                     String playerName = scanner.nextLine();
                     System.out.println("\nNice to meet you " + playerName + "!");
-                    player = new Barista(playerName, new BobaMenu(), scanner);
+                    player = new Player(playerName, new BobaMenu(), scanner);
 
                     //Instructions to the game
                     System.out.println("\nIn this game, you are working in a boba shop as a recently hired Boba tea barista.");

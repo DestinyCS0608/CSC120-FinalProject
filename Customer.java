@@ -82,6 +82,7 @@ public class Customer {
      * @param playerBobaFlavor  The flavor of the player's boba.
      * @param playerBobaSize    The size of the player's boba.
      * @param playerBobaTopping The topping of the player's boba.
+     * Help from Professor Jordan!
      */
     public void complain(String playerBobaFlavor, String playerBobaSize, String playerBobaTopping){
         System.out.println("\n");
@@ -99,6 +100,8 @@ public class Customer {
     /**
      * Prints out the  customer's preferred boba order with a typewriter effect.
      * @return A string of the customer's preferred boba order.
+     * Source: Stack Overflow https://stackoverflow.com/questions/32918414/java-printing-text-letter-by-letter-in-console-ft-lag  
+     * Modified to print slower
      */
     public String toString() {
         String text = "\033[1m" + name + "\033[0m: 'I would like a " +

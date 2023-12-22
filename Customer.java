@@ -15,7 +15,7 @@ public class Customer {
     private String preferredTopping;
 
     /**
-     * Constructs a new random customer with random preferences for name, flavor, size, and topping.
+     * Constructs a new random customer with random choices of for name, flavor, size, and topping.
      */
     
     public Customer() {

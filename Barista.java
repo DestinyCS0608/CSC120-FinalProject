@@ -1,15 +1,16 @@
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
+
 import java.util.Random;
 import java.util.Scanner;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 /**
  * The Player class represents a player who is a barista who serves boba drinks to customers.
  * It manages the interaction with customers, boba choices, orders, and customer satisfaction.
  */
-public class Player {
+public class Barista {
 
-    private String playerName;
+    private String name;
     private BobaMenu bobaMenu;
     private String playerFlavor;
     private String playerSize;
@@ -19,17 +20,17 @@ public class Player {
 
     /**
      * Constructs a new player with the specified name, boba menu, and scanner.
-     * @param playerName The player's name.
+     * @param name The player's name.
      * @param bobaMenu   The boba menu to reference for pricing of the drinks.
      * @param scanner    The scanner for user input.
      */
-    public Player(String playerName, BobaMenu bobaMenu, Scanner scanner) {
-        this.playerName = playerName;
+    public Barista(String name, BobaMenu bobaMenu, Scanner scanner) {
+        this.name = name;
         this.bobaMenu = bobaMenu;
         this.profit = BigDecimal.ZERO;       
-        this.playerFlavor = "";
-        this.playerSize = "";
-        this.playerTopping = "";
+        this.playerFlavor = null;
+        this.playerSize = null;
+        this.playerTopping = null;
         this.scanner = scanner;
     }
 
@@ -41,27 +42,27 @@ public class Player {
         return profit;
     }
 
+
      /**
      * Serves boba to a customer, managing the order process and customer satisfaction.
      * @param customer The customer to serve.
      * @return true if the customer is satisfied and false if they're not.
      */
-    public boolean serveBoba(Customer customer) {
+    public boolean serveCustomer(Customer customer) {
     
         System.out.println("\u001B[3mAre you ready to make the order? (y/n): \u001B[0m"); 
-        String readyToOrder = scanner.nextLine().toLowerCase();
+        String makeBoba = scanner.nextLine().toLowerCase();
 
-        if (!readyToOrder.equals("y")) {
+        if (!makeBoba.equals("y")) {
             System.out.println("\n\u001B[3mOkay, the customer will repeat their order.\u001B[0m"); 
             System.out.println(customer); 
-    
             System.out.println("\n\u001B[3mAre you ready to make the order now? (y/n):\u001B[0m"); 
-
-            readyToOrder = scanner.nextLine().toLowerCase();
+            makeBoba = scanner.nextLine().toLowerCase();
     
-            if (!readyToOrder.equals("y")) {
+             // Player is not ready to make the order, so move on to the next customer
+            if (!makeBoba.equals("y")) {
                 System.out.println("\n\u001B[3mOkay, let's give this customer to your coworker barista.\u001B[0m"); 
-                return false; // Player is not ready to make the order, so move on to the next customer
+                return false;
             }
         }
 
@@ -72,18 +73,18 @@ public class Player {
         promptForBobaChoices();
         slowWriting("\n.......... Making Boba .........\n");
 
-        // Calculate total cost using stored choices
+        // Calculate  cost of boba using the customer  choices
         double bobaCost = calculateBobaCost(customer);
 
-        // Display total cost and simulate payment
-        System.out.println("\nBarista " + playerName+ ": 'Your total is $" + bobaCost + "'");
+        // Display total cost and payment
+        System.out.println("\nBarista " + name+ ": 'Your total is $" + bobaCost + "'");
         slowWriting("\n... Costumer is paying ...\n");
         System.out.println("\nPayment Recieved! 💰 💵 💳 ");
-        System.out.println("\nBarista " +playerName+ ": Here's your receipt! 🧾");
+        System.out.println("\nBarista " +name+ ": Here's your receipt! 🧾");
 
         slowWriting("\n... Costumer is tasting boba ...");
 
-        // Determine satisfaction based on whether the order is fulfilled correctly
+        // Determine customer satisfactions based on whether the order was made correctly
         boolean satisfied = decideSatisfaction(customer);
 
         if (satisfied) {
@@ -94,7 +95,6 @@ public class Player {
         }
         System.out.println("\033[1mTotal Shop Profit: $" + profit + "\033[0m"); 
         System.out.println("\033[1mGoal to Reach: $ 100\033[0m");  
- 
         System.out.println("-----------------------------------");
         return satisfied;
     }
@@ -109,20 +109,20 @@ public class Player {
         do {
             System.out.print("Enter boba flavor: ");
             playerFlavor = scanner.nextLine().toLowerCase();
-            System.out.print("Enter boba size: ");
-            playerSize = scanner.nextLine().toLowerCase();
             System.out.print("Enter boba topping: ");
             playerTopping = scanner.nextLine().toLowerCase();
+            System.out.print("Enter boba size: ");
+            playerSize = scanner.nextLine().toLowerCase();
     
-            // Ask the user if they are satisfied
+            // Ask the player if they are satisfied
             System.out.print("\n\u001B[3mAre you satisfied with your choices? (y/n):\u001B[0m");
-            String readyToMake = scanner.nextLine().toLowerCase();
+            String makeBoba = scanner.nextLine().toLowerCase();
     
-            if (readyToMake.equals("y")) {
+            if (!makeBoba.equals("y")) {
+                System.out.println("\n\u001B[3mOkay, let's try again!\n\u001B[0m");
+            } else {
                 System.out.println("\n\u001B[3mGreat, let's make the drink!\u001B[0m");
                 ready = true; // Exits the loop if  the user is ready
-            } else {
-                System.out.println("\n\u001B[3mOkay, let's try again!\n\u001B[0m");
             }
         } while (!ready);
     
@@ -156,7 +156,7 @@ public class Player {
      */
     private void satisfiedCustomer(Customer customer, double bobaCost) {
         System.out.println("\nCustomer is satisfied! You made the right boba!\n");
-        double tipAmount = generateTip();
+        double tipAmount = tip();
         if (tipAmount > 0) {
             System.out.println("Customer left a $" + tipAmount + " tip!");
             profit = profit.add(BigDecimal.valueOf(bobaCost + tipAmount));
@@ -164,12 +164,26 @@ public class Player {
     }
     
     /**
+     * Generates a random tip amount between $0 and $2.
+     * @return The generated tip amount.
+     */
+    private double tip() {
+        // Generate a random tip between $0 and $2
+        double tip = new Random().nextDouble() * 2.00;
+    
+        // Round the tip to two decimal places
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        tip = Double.parseDouble(decimalFormat.format(tip));
+    
+        return tip;
+    }
+    /**
      * Handles the event when a customer is dissatisfied, providing options to remake or refund the boba.
      * @param customer   The dissatisfied customer.
      * @param bobaCost  The total cost of the original boba order.
      */
     private void dissatisfiedCustomer(Customer customer, double bobaCost) {
-        System.out.println("\nCustomer is not satisfied. You made the wrong boba! What should you do " + playerName + "? ");
+        System.out.println("\nCustomer is not satisfied. You made the wrong boba! What should you do " + name + "? ");
         System.out.println("\n1. Offer a refund");
         System.out.println("2. Remake the boba order");
         System.out.print("\nEnter (1 or 2): ");
@@ -178,21 +192,19 @@ public class Player {
             if (scanner.hasNextInt()) {
                 int choice = scanner.nextInt();
                 scanner.nextLine();
-    
                 switch (choice) {
-                    case 1:
-                        refund(bobaCost);
-                        break;
+
                     case 2:
                         remakeBoba(customer, bobaCost);
                         break;
-                    default:
-                        System.out.println("\nInvalid choice. Please enter 1 or 2.");
+                    case 1:
+                        refund(bobaCost);
+                        break;
                 }   
                 break; // Exit the loop after processing the choice
             } else {
                 System.out.println("\nInvalid input. Please enter a number (1 or 2).");
-                scanner.next(); // Consume invalid input
+                scanner.next(); 
             }
         } 
         scanner.nextLine(); // Consume the newline character
@@ -204,7 +216,7 @@ public class Player {
      */
     private void refund(double bobaCost) {
         slowWriting("\n....Processing Refund....\n" );
-        System.out.println("\nBarista " +playerName+ ": 'Refund processed. We're sorry for the inconvience!'");
+        System.out.println("\nBarista " +name+ ": 'Refund processed. We're sorry for the inconvience!'");
         profit = profit.add(BigDecimal.valueOf(bobaCost));
     }
 
@@ -229,18 +241,18 @@ public class Player {
             return false ;
         }
 
-        // Clear the screen
+        // Clears out the the screen
         System.out.print("\033c");
 
         // Prompt the player for the corrected choices
         System.out.print("\nEnter corrected boba flavor: ");
         this.playerFlavor = scanner.next();
         scanner.nextLine().toLowerCase(); 
-        System.out.print("Enter corrected boba size: ");
-        this.playerSize = scanner.next();
-        scanner.nextLine().toLowerCase(); 
         System.out.print("Enter corrected boba topping: ");
         this.playerTopping = scanner.next();
+        scanner.nextLine().toLowerCase(); 
+        System.out.print("Enter corrected boba size: ");
+        this.playerSize = scanner.next();
         scanner.nextLine().toLowerCase(); 
 
         slowWriting("\n.......... Making Boba .........\n");
@@ -249,10 +261,10 @@ public class Player {
         double newBobaCost = calculateBobaCost(customer);
 
         // Display total cost and payment
-        System.out.println("\nBarista " + playerName+ ": 'Your total is $" + newBobaCost + "'");
+        System.out.println("\nBarista " + name+ ": 'Your total is $" + newBobaCost + "'");
         slowWriting("\n... Costumer is paying ...\n");
         System.out.println("\nPayment Recieved! 💰 💵 💳 ");
-        System.out.println("\nBarista " +playerName+ ": Great! Here's your receipt! 🧾");
+        System.out.println("\nBarista " +name+ ": Great! Here's your receipt! 🧾");
 
         slowWriting("\n... Costumer is tasting boba ...");
     
@@ -268,21 +280,7 @@ public class Player {
             return false;
         }
     }
-    
-    /**
-     * Generates a random tip amount between $0 and $2.
-     * @return The generated tip amount.
-     */
-    private double generateTip() {
-        // Generate a random tip between $0 and $2
-        double tip = new Random().nextDouble() * 2.00;
-    
-        // Round the tip to two decimal places
-        DecimalFormat decimalFormat = new DecimalFormat("0.00");
-        tip = Double.parseDouble(decimalFormat.format(tip));
-    
-        return tip;
-    }
+
 
     /**
      * Prints text in slow writing or typerwriter effect.

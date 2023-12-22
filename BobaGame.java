@@ -15,33 +15,22 @@ public class BobaGame {
 
         try (Scanner scanner = new Scanner(System.in)) {
             boolean gameStarted = false;
-            Player player = null;
+            Barista player = null;
             BigDecimal goal = new BigDecimal("100.00"); 
 
             while (player == null || player.getProfit().compareTo(goal) < 0) {
-                if (gameStarted) {
-                    System.out.println("\u001B[1m \n🔔 A customer walks in! 🔔\033[0m");
-
-                    // Generate a random customer
-                    Customer customer = new Customer();
-
-                    // Display customer and prompt the player to serve boba
-                    System.out.println("\n" + customer);
-                    // Assuming player.serveBoba returns a boolean indicating if the game should continue
-                    if (!player.serveBoba(customer)) {
-                        //break;
-                    }
-                } else {
+                if (!gameStarted) {
                     // Game introduction and description
-                    System.out.println("**         Welcome to the Boba Game!          **");
+                    System.out.println("\n**         Welcome to the Boba Game!          **");
                     System.out.println("**********************************************");
 
-                    // Initialize player
+                    // Creating player - barista
                     System.out.print("\nHello! What is your name?: ");
                     String playerName = scanner.nextLine();
                     System.out.println("\nNice to meet you " + playerName + "!");
-                    player = new Player(playerName, new BobaMenu(), scanner);
+                    player = new Barista(playerName, new BobaMenu(), scanner);
 
+                    //Instructions to the game
                     System.out.println("\nIn this game, you are working in a boba shop as a recently hired Boba tea barista.");
                     System.out.println("Your job is to serve boba to customers based on what the order.");
                     System.out.println("Remember each customer's flavor, size, and topping preferences.");
@@ -58,6 +47,20 @@ public class BobaGame {
                     }
 
                     gameStarted = true; // Player is ready, and the game has started
+                
+                } else {
+                    System.out.println("\u001B[1m \n🔔 A customer walks in! 🔔\033[0m");
+
+                    // Generate a random customer
+                    Customer customer = new Customer();
+
+                    // Display customer and prompt the player to serve boba
+                    System.out.println("\n" + customer);
+                    // Assuming player.serveBoba returns a boolean indicating if the game should continue
+                    if (!player.serveCustomer(customer)) {
+                        //break;
+                    }
+                    
                 }
             }
 

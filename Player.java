@@ -232,16 +232,13 @@ public class Player {
         // Clear the screen
         System.out.print("\033c");
 
-
         // Prompt the player for the corrected choices
         System.out.print("\nEnter corrected boba flavor: ");
         this.playerBobaFlavor = scanner.next();
         scanner.nextLine().toLowerCase(); 
-    
         System.out.print("Enter corrected boba size: ");
         this.playerBobaSize = scanner.next();
         scanner.nextLine().toLowerCase(); 
-    
         System.out.print("Enter corrected boba topping: ");
         this.playerBobaTopping = scanner.next();
         scanner.nextLine().toLowerCase(); 
@@ -255,14 +252,9 @@ public class Player {
         System.out.println("\nBarista " + playerName+ ": 'Your total is $" + newTotalCost + "'");
         slowWriting("\n... Costumer is paying ...\n");
         System.out.println("\nPayment Recieved! 💰 💵 💳 ");
-        System.out.println("\nBarista " +playerName+ ": Here's your receipt! 🧾");
+        System.out.println("\nBarista " +playerName+ ": Great! Here's your receipt! 🧾");
 
         slowWriting("\n... Costumer is tasting boba ...");
-    
-        // Display payment 
-        System.out.println("\nPayment Recieved! 🧾 💰 💵 💳 ");
-        System.out.println("\nBarista " +playerName+ ": Great! Here's your receipt! 🧾");
-        totalEarnings = totalEarnings.add(BigDecimal.valueOf(newTotalCost));
     
         // Determine satisfaction based on whether the corrected choices match the customer's preferences
         boolean satisfied = determineSatisfaction(customer);

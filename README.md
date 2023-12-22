@@ -19,13 +19,14 @@
 
 This Boba Game is a work in progess. This game was initial supposed to be a baking game, but I changed it to become a boba game after I went to get boba with some friends. In Gillett, there is a whiteboard in the elevator where students can put surveys or polls for everyone to enter. One time as I was going to my room, a poll was "What is your fav boba order?" I realized that this might be a sign and I decideded to make the change. 
 
-My overall approach was to first sell boba to customers and work out the aesthetics after. I wanted to make sure that I can at least give boba to customers first. I then worked out how to randomize the topping, size, and flavor the order would be, then after assign different prices to them. The aestheticss came after, and I honestly think I got wrapped up into it because I definelty lefy some design choices out that I wanted to implement. For example, I wanted to unlock new flavors, and toppings after the user reaches certain increments of profit like $25, $50, $75, and $100.
+My overall approach was to first sell boba to customers and work out the aesthetics after. I wanted to make sure that I can at least give boba to customers first. I then worked out how to randomize the topping, size, and flavor the order would be, then after assign different prices to them. The aestheticss came after, and I honestly think I got wrapped up into it because I definelty left some design choices out that I wanted to implement. For example, I wanted to unlock new flavors, and toppings after the user reaches certain increments of profit like $25, $50, $75, and $100.
 
-Some exciting new things I learned was the loop to print out strings in a typewriter effect. It's so cool! Although, I worked with Hash Maps, I appreciated working with them more, and learning new ways to utlize them, like assinging defeault price values to flavors, toppings, and size. I also learned how to round deicimals using BigDecimal.
+Some exciting new things I learned was the loop to print out strings in a typewriter effect. It's so cool! Although, I worked with Hash Maps, I appreciated working with them more, and learning new ways to utlize them, like assinging defeault price values to flavors, toppings, and size. I also learned how to round deicimals using BigDecimal. I think the most important advice I got was from Jordan, who help me come up with how to allow the customers to complain which helps the user know what they messed up
 
-I think the most important advice I got was from Jordan, who help me come up with how to allow the customers to complain which helps the user know what they messed up. And I think that if I went back in time, I will tell myself to work on aestheics later and make sure the framework of the game is solidifed first.
+NEXT STEPS:
+I think that if I went back in time, I will tell myself to work on aestheics later and make sure the framework of the game is solidifed first. I wanted to allow iptions for the user's input for example, they can wither write out the full word "small" or just "s". This goes for "y/n" and having the option to input "yes/no" too. I also wanted to add cafe sounds as as well, which I think would have heightned the experience. I also wanted to implement a timer aspect, in which the user has 30 seconds to unput the right order. I did test that out, but it seems liked it was too stressful for users to both remember the customer's order and type it in under 30 seconds. Maybe once the game reached a certain level, a timer can be implemented. I also wanted to eventually have the barista restock on cups, and ice. All in all, I had high goals I wnated to achieve but sadly couldn't do it all under the time I had. Maybe next time, I can work with somebody else!
 
-I liked to thank eveyrone who helped me with my codebase and other attributes!
+THANK YOU! I liked to thank eveyrone who helped me with my codebase and other attributes!
 
 Sources that I used to help me with my code!
 
@@ -37,3 +38,6 @@ Sources that I used to help me with my code!
 
 - Displaying Word Letter by Letter: 
     https://stackoverflow.com/questions/32918414/java-printing-text-letter-by-letter-in-console-ft-lag 
+
+- Bold Formating:
+    https://stackoverflow.com/questions/29109678/print-in-bold-on-a-terminal 

@@ -26,38 +26,6 @@ public class Customer {
     }
 
     /**
-     * Gets the name of the customer.
-     * @return The name of the customer.
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Gets the preferred flavor of the customer.
-     * @return The preferred flavor of the customer.
-     */
-    public String getPreferredFlavor() {
-        return preferredFlavor;
-    }
-
-    /**
-     * Gets the preferred size of the customer.
-     * @return The preferred size of the customer.
-     */
-    public String getPreferredSize() {
-        return preferredSize;
-    }
-
-    /**
-     * Gets the preferred topping of the customer.
-     * @return The preferred topping of the customer.
-     */
-    public String getPreferredTopping() {
-        return preferredTopping;
-    }
-
-    /**
      * Generates a random name for the customer from an array list.
      * @return A randomly chosen name for the customer.
      */
@@ -130,7 +98,7 @@ public class Customer {
 
     /**
      * Prints out the  customer's preferred boba order with a typewriter effect.
-     * @return A string representation of the customer's preferred boba order.
+     * @return A string of the customer's preferred boba order.
      */
     public String toString() {
         String text = "\033[1m" + name + "\033[0m: 'I would like a " +

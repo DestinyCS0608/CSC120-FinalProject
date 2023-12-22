@@ -8,7 +8,7 @@ If your game includes challenges that must be overcome to win, also list them be
 
 
 ## INTRODUCTION
-Welcome to the Boba Game! Here are the following commands to interact with the game.
+Welcome to the Boba Game! Here are the commands to interact with the game.
 
 ## COMMANDS
 
@@ -16,7 +16,7 @@ Welcome to the Boba Game! Here are the following commands to interact with the g
 - *Command:* `y` - start the game when prompted.
 
 # 2. Serve Boba:
-- *Command:* Input boba choices when prompted - Serve boba to customers based on their preferences. Pay attention to flavor, size, and topping.
+- *Command:* Input boba choices when prompted - Serve boba to customers based on their preferences. Memorize their flavor, size, and topping.
 
 # 3. Refund:
 - *Command:* `1`- Offer a refund to a dissatisfied customer. Useful when the boba order is incorrect.

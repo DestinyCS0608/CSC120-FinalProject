@@ -9,7 +9,7 @@ public class BobaGame {
 
     /**
      * The main method that serves as the starting point for the game
-     * @param args The command-line arguments (unused in this implementation).
+     * @param args 
      */
     public static void main(String[] args) {
 
@@ -61,7 +61,7 @@ public class BobaGame {
                 }
             }
 
-            System.out.println("\nCongratulations! You've reached the profit goal of $10. Game Over!");
+            System.out.println("\nCongratulations! You've reached the profit goal of $100. Game Over!");
         }
     }
 }

@@ -281,8 +281,7 @@ public class Barista {
         }
     }
 
-
-    /**
+    /** @Overide? I think because Customer has one too.. 
      * Prints text in slow writing or typerwriter effect.
      * @param text The string to be written.
      * @return The same string that was printed.
